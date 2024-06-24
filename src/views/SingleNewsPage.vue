@@ -9,11 +9,28 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <!-- Ajoutez ici le contenu de l'actualité -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ news.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ news.content }}
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { ref } from 'vue';
+import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const newsId = route.params.id;
+
+const news = ref({
+  title: 'Titre de l\'actualité',
+  content: 'Contenu complet de l\'actualité.'
+});
 </script>

@@ -8,55 +8,55 @@
           </ion-toolbar>
         </ion-header>
         <ion-content>
-          <ion-list id="auth-list">
+          <ion-list>
             <ion-list-header>Mon Compte</ion-list-header>
-            <ion-menu-toggle :auto-hide="false">
-              <ion-item @click="selectedIndex = 0" router-direction="root" router-link="/login" lines="none" :detail="false" :class="{ selected: selectedIndex === 0 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="logInOutline" :md="logInSharp"></ion-icon>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item router-link="/login" detail="false">
+                <ion-icon slot="start" :ios="logInOutline" :md="logInSharp"></ion-icon>
                 <ion-label>Connexion</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 1" router-direction="root" router-link="/register" lines="none" :detail="false" :class="{ selected: selectedIndex === 1 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="personAddOutline" :md="personAddSharp"></ion-icon>
+              <ion-item router-link="/register" detail="false">
+                <ion-icon slot="start" :ios="personAddOutline" :md="personAddSharp"></ion-icon>
                 <ion-label>Inscription</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 2" router-direction="root" router-link="/account" lines="none" :detail="false" :class="{ selected: selectedIndex === 2 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="personOutline" :md="personSharp"></ion-icon>
+              <ion-item router-link="/account" detail="false">
+                <ion-icon slot="start" :ios="personOutline" :md="personSharp"></ion-icon>
                 <ion-label>Mon Compte</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
 
-          <ion-list id="info-list">
+          <ion-list>
             <ion-list-header>Informations</ion-list-header>
-            <ion-menu-toggle :auto-hide="false">
-              <ion-item @click="selectedIndex = 3" router-direction="root" router-link="/news" lines="none" :detail="false" :class="{ selected: selectedIndex === 3 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="newspaperOutline" :md="newspaperSharp"></ion-icon>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item router-link="/news" detail="false">
+                <ion-icon slot="start" :ios="newspaperOutline" :md="newspaperSharp"></ion-icon>
                 <ion-label>Actualités</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 4" router-direction="root" router-link="/offers" lines="none" :detail="false" :class="{ selected: selectedIndex === 4 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="pricetagOutline" :md="pricetagSharp"></ion-icon>
+              <ion-item router-link="/offers" detail="false">
+                <ion-icon slot="start" :ios="pricetagOutline" :md="pricetagSharp"></ion-icon>
                 <ion-label>Offres</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 5" router-direction="root" router-link="/contact" lines="none" :detail="false" :class="{ selected: selectedIndex === 5 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="mailOutline" :md="mailSharp"></ion-icon>
+              <ion-item router-link="/contact" detail="false">
+                <ion-icon slot="start" :ios="mailOutline" :md="mailSharp"></ion-icon>
                 <ion-label>Contact</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
 
-          <ion-list id="legal-list">
+          <ion-list>
             <ion-list-header>Mentions Légales</ion-list-header>
-            <ion-menu-toggle :auto-hide="false">
-              <ion-item @click="selectedIndex = 6" router-direction="root" router-link="/legal-notice" lines="none" :detail="false" :class="{ selected: selectedIndex === 6 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="informationCircleOutline" :md="informationCircleSharp"></ion-icon>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item router-link="/legal-notice" detail="false">
+                <ion-icon slot="start" :ios="informationCircleOutline" :md="informationCircleSharp"></ion-icon>
                 <ion-label>Mentions légales</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 7" router-direction="root" router-link="/terms" lines="none" :detail="false" :class="{ selected: selectedIndex === 7 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="documentTextOutline" :md="documentTextSharp"></ion-icon>
+              <ion-item router-link="/terms" detail="false">
+                <ion-icon slot="start" :ios="documentTextOutline" :md="documentTextSharp"></ion-icon>
                 <ion-label>CGU/CGV</ion-label>
               </ion-item>
-              <ion-item @click="selectedIndex = 8" router-direction="root" router-link="/privacy" lines="none" :detail="false" :class="{ selected: selectedIndex === 8 }">
-                <ion-icon aria-hidden="true" slot="start" :ios="shieldOutline" :md="shieldSharp"></ion-icon>
+              <ion-item router-link="/privacy" detail="false">
+                <ion-icon slot="start" :ios="shieldOutline" :md="shieldSharp"></ion-icon>
                 <ion-label>Politique de confidentialité</ion-label>
               </ion-item>
             </ion-menu-toggle>
@@ -80,7 +80,6 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
   IonRouterOutlet,
   IonSplitPane,
   IonTitle,
@@ -105,8 +104,7 @@ import {
   documentTextOutline,
   documentTextSharp,
   shieldOutline,
-  shieldSharp,
-  menuOutline
+  shieldSharp
 } from 'ionicons/icons';
 
 const selectedIndex = ref(0);

@@ -9,13 +9,21 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-button router-link="/news">Voir les actualités</ion-button>
-      <ion-button router-link="/register">S'inscrire</ion-button>
-      <ion-button router-link="/login">Se connecter</ion-button>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Bienvenue sur notre service SaaS</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Découvrez nos services mensuels et annuels sous forme d'abonnement.
+        </ion-card-content>
+      </ion-card>
+      <ion-button expand="full" router-link="/news">Voir les actualités</ion-button>
+      <ion-button expand="full" router-link="/register">S'inscrire</ion-button>
+      <ion-button expand="full" router-link="/login">Se connecter</ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonButton, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
 </script>

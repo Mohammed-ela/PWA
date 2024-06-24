@@ -9,11 +9,17 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <!-- Ajoutez ici le contenu de la politique de confidentialité -->
+      <ion-card>
+        <ion-card-content>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.
+          </p>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButtons, IonCard, IonCardContent, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
