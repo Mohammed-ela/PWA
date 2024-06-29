@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router';
 
@@ -33,7 +34,10 @@ import '@ionic/vue/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
+//pinia
+const pinia = createPinia()
+app.use(pinia)
+//ionic vue
 const app = createApp(App)
   .use(IonicVue)
   .use(router);

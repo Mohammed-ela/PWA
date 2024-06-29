@@ -41,7 +41,7 @@
               </ion-item>
               <ion-item router-link="/account" detail="false">
                 <ion-icon slot="start" :ios="personOutline" :md="personSharp"></ion-icon>
-                <ion-label>Mon Compte</ion-label>
+                <ion-label>Mon Profil</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
