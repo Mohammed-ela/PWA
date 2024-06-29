@@ -6,7 +6,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <!-- Ajoutez ici le contenu du service réservé aux abonnés -->
+        <!-- Pour les abonnées -->
       </ion-content>
     </ion-page>
   </template>

@@ -17,7 +17,7 @@
           Découvrez nos services mensuels et annuels sous forme d'abonnement.
         </ion-card-content>
       </ion-card>
-      <ion-button expand="full" router-link="/news">Voir les actualités</ion-button>
+      <ion-button expand="full" router-link="/actus">Voir les actualités</ion-button>
       <ion-button expand="full" router-link="/register">S'inscrire</ion-button>
       <ion-button expand="full" router-link="/login">Se connecter</ion-button>
     </ion-content>

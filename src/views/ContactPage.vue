@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -9,34 +9,138 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="floating">Nom</ion-label>
-          <ion-input v-model="name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input v-model="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Message</ion-label>
-          <ion-textarea v-model="message"></ion-textarea>
-        </ion-item>
-      </ion-list>
-      <ion-button expand="full" @click="sendContactForm">Envoyer</ion-button>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Formulaire de Contact</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <form @submit.prevent="sendContactForm">
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Nom/Prénom</ion-label>
+                <ion-input v-model="state.contactName" :class="{ 'has-error': v$.contactName.$error }"></ion-input>
+                <ion-note slot="helper" v-if="v$.contactName.$error">Ce champ est requis</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="email" v-model="state.contactEmail" :class="{ 'has-error': v$.contactEmail.$error }"></ion-input>
+                <ion-note slot="helper" v-if="v$.contactEmail.$error">Email non valide</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Objet</ion-label>
+                <ion-input v-model="state.contactSubject" :class="{ 'has-error': v$.contactSubject.$error }"></ion-input>
+                <ion-note slot="helper" v-if="v$.contactSubject.$error">Ce champ est requis</ion-note>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Message</ion-label>
+                <ion-textarea v-model="state.contactMessage" :class="{ 'has-error': v$.contactMessage.$error }"></ion-textarea>
+                <ion-note slot="helper" v-if="v$.contactMessage.$error">Minimum 50 caractères</ion-note>
+              </ion-item>
+            </ion-list>
+            <ion-button expand="full" type="submit" :disabled="v$.$invalid">Envoyer</ion-button>
+          </form>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Contactez-nous</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon :icon="icons.locationOutline" slot="start"></ion-icon>
+              <ion-label>
+                <h2>Adresse :</h2>
+                <p>19 rue Yves Toudic, 75010 Paris</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon :icon="icons.callOutline" slot="start"></ion-icon>
+              <ion-label>
+                <h2>Téléphone :</h2>
+                <p>01 23 45 67 89</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon :icon="icons.mailOutline" slot="start"></ion-icon>
+              <ion-label>
+                <h2>Email :</h2>
+                <p>contact@webstart.fr</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+          <!-- <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.890080960569!2d2.364290915673417!3d48.86970847928832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1c3ed7a0c5%3A0x1a2a8e9e6e09db20!2s19%20Rue%20Yves%20Toudic%2C%2075010%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1638282062582!5m2!1sen!2sus"
+            width="100%"
+            height="250"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe> -->
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTextarea, IonTitle, IonToolbar, IonButtons, IonMenuButton } from '@ionic/vue';
+import { reactive } from 'vue';
+import useVuelidate from '@vuelidate/core';
+import { required, email, minLength } from '@vuelidate/validators';
+import {
+  IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTextarea, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNote, IonIcon
+} from '@ionic/vue';
+import { locationOutline, callOutline, mailOutline } from 'ionicons/icons';
 
-const name = ref('');
-const email = ref('');
-const message = ref('');
+const state = reactive({
+  contactName: '',
+  contactEmail: '',
+  contactSubject: '',
+  contactMessage: ''
+});
+
+const rules = {
+  contactName: { required },
+  contactEmail: { required, email },
+  contactSubject: { required },
+  contactMessage: { required, minLength: minLength(50) }
+};
+
+const v$ = useVuelidate(rules, state);
+
+const icons = {
+  locationOutline,
+  callOutline,
+  mailOutline
+};
 
 const sendContactForm = () => {
-  // Ajoutez la logique d'envoi du formulaire de contact ici
+  v$.value.$touch();
+  if (v$.value.$invalid) {
+    return;
+  }
+
+  console.log("Formulaire envoyé avec succès!");
 };
 </script>
+
+<style scoped>
+.ion-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ion-note {
+  color: var(--ion-color-danger);
+}
+
+.has-error ion-input, .has-error ion-textarea {
+  --background: var(--ion-color-danger-tint);
+}
+
+iframe {
+  border: 0;
+}
+</style>
