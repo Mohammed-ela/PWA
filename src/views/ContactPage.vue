@@ -93,6 +93,7 @@ import {
   IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTextarea, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNote, IonIcon
 } from '@ionic/vue';
 import { locationOutline, callOutline, mailOutline } from 'ionicons/icons';
+import apiClient from '@/axios';
 
 const state = reactive({
   contactName: '',
@@ -116,13 +117,23 @@ const icons = {
   mailOutline
 };
 
-const sendContactForm = () => {
+const sendContactForm = async () => {
   v$.value.$touch();
   if (v$.value.$invalid) {
     return;
   }
 
-  console.log("Formulaire envoyé avec succès!");
+  try {
+    await apiClient.post('/contact', {
+      name: state.contactName,
+      email: state.contactEmail,
+      subject: state.contactSubject,
+      message: state.contactMessage
+    });
+    console.log("Formulaire envoyé avec succès!");
+  } catch (error) {
+    console.error('Erreur lors de l\'envoi du formulaire de contact:', error.response.data);
+  }
 };
 </script>
 
