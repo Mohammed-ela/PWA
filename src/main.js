@@ -4,8 +4,11 @@ import App from './App.vue';
 import router from './router';
 import { IonicVue } from '@ionic/vue';
 import { addIcons } from 'ionicons';
-import { logInOutline, logInSharp, personAddOutline, personAddSharp, personOutline, personSharp, logOutOutline, logOutSharp, newspaperOutline, newspaperSharp, pricetagOutline, pricetagSharp, mailOutline, mailSharp, informationCircleOutline, informationCircleSharp, documentTextOutline, documentTextSharp, shieldOutline, shieldSharp } from 'ionicons/icons';
-
+import {
+  logInOutline, logInSharp, personAddOutline, personAddSharp, personOutline, personSharp, logOutOutline, logOutSharp, newspaperOutline, newspaperSharp,
+  pricetagOutline, pricetagSharp, mailOutline, mailSharp, informationCircleOutline, informationCircleSharp, documentTextOutline, documentTextSharp,
+  shieldOutline, shieldSharp, checkmarkCircle, logoDiscord, logoFacebook
+} from 'ionicons/icons';
 // Core CSS required for Ionic components to work properly
 import '@ionic/vue/css/core.css';
 import '@ionic/vue/css/normalize.css';
@@ -48,6 +51,9 @@ addIcons({
   'document-text-sharp': documentTextSharp,
   'shield-outline': shieldOutline,
   'shield-sharp': shieldSharp,
+  'checkmark-circle': checkmarkCircle,
+  'logo-discord': logoDiscord,
+  'logo-facebook': logoFacebook,
 });
 
 // Pinia
