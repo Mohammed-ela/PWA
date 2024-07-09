@@ -9,7 +9,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-
+      
       <ion-card>
         <ion-card-header>
           <ion-card-title>Formulaire de Contact</ion-card-title>
@@ -19,113 +19,106 @@
             <ion-list>
               <ion-item>
                 <ion-input
-                  label="Nom/Prénom"
-                  labelPlacement="stacked"
-                  v-model="state.contactName"
-                  :class="{ 'has-error': v$.contactName.$error }"
-                  required
-                  clear-input
+                label="Nom/Prénom"
+                labelPlacement="stacked"
+                v-model="state.contactName"
+                :class="{ 'has-error': v$.contactName.$error }"
+                required
+                clear-input
                 >
-                  <ion-icon slot="start" name="person-outline" class="input-icon"></ion-icon>
-                </ion-input>
-                <ion-note slot="helper" v-if="v$.contactName.$error">Ce champ est requis</ion-note>
-              </ion-item>
-              <ion-item>
-                <ion-input
-                  label="Email"
-                  labelPlacement="stacked"
-                  v-model="state.contactEmail"
-                  :class="{ 'has-error': v$.contactEmail.$error }"
-                  type="email"
-                  required
-                  clear-input
-                >
-                  <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
-                </ion-input>
-                <ion-note slot="helper" v-if="v$.contactEmail.$error">Email non valide</ion-note>
-              </ion-item>
-              <ion-item>
-                <ion-input
-                  label="Objet"
-                  labelPlacement="stacked"
-                  v-model="state.contactSubject"
-                  :class="{ 'has-error': v$.contactSubject.$error }"
-                  required
-                  clear-input
-                >
-                  <ion-icon slot="start" name="help-outline" class="input-icon"></ion-icon>
-                </ion-input>
-                <ion-note slot="helper" v-if="v$.contactSubject.$error">Ce champ est requis</ion-note>
-              </ion-item>
-              <ion-item>
-                <ion-textarea
-                  label="Message"
-                  labelPlacement="stacked"
-                  v-model="state.contactMessage"
-                  :class="{ 'has-error': v$.contactMessage.$error }"
-                  required
-                  clear-input
-                >
-                  <ion-icon slot="start" name="chatbubbles-outline" class="input-icon"></ion-icon>
-                </ion-textarea>
-                <ion-note slot="helper" v-if="v$.contactMessage.$error">Minimum 50 caractères</ion-note>
-              </ion-item>
-            </ion-list>
-            <ion-button expand="full" shape="round" type="submit" :disabled="v$.$invalid">Envoyer</ion-button>
-          </form>
-        </ion-card-content>
-      </ion-card>
+                <ion-icon slot="start" name="person-outline" class="input-icon"></ion-icon>
+              </ion-input>
+              <ion-note slot="helper" v-if="v$.contactName.$error">Ce champ est requis</ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-input
+              label="Email"
+              labelPlacement="stacked"
+              v-model="state.contactEmail"
+              :class="{ 'has-error': v$.contactEmail.$error }"
+              type="email"
+              required
+              clear-input
+              >
+              <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
+            </ion-input>
+            <ion-note slot="helper" v-if="v$.contactEmail.$error">Email non valide</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-input
+            label="Objet"
+            labelPlacement="stacked"
+            v-model="state.contactSubject"
+            :class="{ 'has-error': v$.contactSubject.$error }"
+            required
+            clear-input
+            >
+            <ion-icon slot="start" name="help-outline" class="input-icon"></ion-icon>
+          </ion-input>
+          <ion-note slot="helper" v-if="v$.contactSubject.$error">Ce champ est requis</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-textarea
+          label="Message"
+          labelPlacement="stacked"
+          v-model="state.contactMessage"
+          :class="{ 'has-error': v$.contactMessage.$error }"
+          required
+          clear-input
+          >
+          <ion-icon slot="start" name="chatbubbles-outline" class="input-icon"></ion-icon>
+        </ion-textarea>
+        <ion-note slot="helper" v-if="v$.contactMessage.$error">Minimum 50 caractères</ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" shape="round" type="submit" :disabled="v$.$invalid">Envoyer</ion-button>
+  </form>
+</ion-card-content>
+</ion-card>
 
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Contactez-nous</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              <ion-icon :icon="icons.locationOutline" slot="start"></ion-icon>
-              <ion-label>
-                <h2>Adresse :</h2>
-                <p>19 rue Yves Toudic, 75010 Paris</p>
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-icon :icon="icons.callOutline" slot="start"></ion-icon>
-              <ion-label>
-                <h2>Téléphone :</h2>
-                <p>01 23 45 67 89</p>
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-icon :icon="icons.mailOutline" slot="start"></ion-icon>
-              <ion-label>
-                <h2>Email :</h2>
-                <p>contact@webstart.fr</p>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Contactez-nous</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item>
+        <ion-icon :icon="icons.locationOutline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Adresse :</h2>
+          <p>19 rue Yves Toudic, 75010 Paris</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon :icon="icons.callOutline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Téléphone :</h2>
+          <p>01 23 45 67 89</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon :icon="icons.mailOutline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Email :</h2>
+          <p>contact@webstart.fr</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
 
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Nous situer</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.890080960569!2d2.364290915673417!3d48.86970847928832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1c3ed7a0c5%3A0x1a2a8e9e6e09db20!2s19%20Rue%20Yves%20Toudic%2C%2075010%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1638282062582!5m2!1sen!2sus"
-            width="100%"
-            height="250"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
-        </ion-card-content>
-      </ion-card>
-      
-      <ion-alert :is-open="showAlert" header="Succès" message="Votre message a été envoyé avec succès!" :buttons="['OK']" @didDismiss="showAlert = false"></ion-alert>
-    </ion-content>
-  </ion-page>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Nous situer</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <iframe width="100%" height="300" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=19%20rue%20yves%20toudic%20+(Webstart)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps devices</a></iframe>        
+  </ion-card-content>
+</ion-card>
+
+<ion-alert :is-open="showAlert" header="Succès" message="Votre message a été envoyé avec succès!" :buttons="['OK']" @didDismiss="showAlert = false"></ion-alert>
+</ion-content>
+</ion-page>
 </template>
 
 <script setup>
@@ -168,7 +161,7 @@ const sendContactForm = async () => {
   if (v$.value.$invalid) {
     return;
   }
-
+  
   try {
     await apiClient.post('/contact', {
       name: state.contactName,
@@ -177,7 +170,7 @@ const sendContactForm = async () => {
       message: state.contactMessage
     });
     showAlert.value = true;
-
+    
     state.contactName = '';
     state.contactEmail = '';
     state.contactSubject = '';
