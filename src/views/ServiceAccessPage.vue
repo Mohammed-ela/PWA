@@ -1,7 +1,7 @@
 <template>
     <ion-page>
       <ion-header>
-        <ion-toolbar>
+         <ion-toolbar color="primary">
           <ion-title>Accès au service</ion-title>
         </ion-toolbar>
       </ion-header>

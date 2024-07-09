@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
+       <ion-toolbar color="primary">
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -14,10 +14,10 @@
           <img :src="news.image" alt="Image de l'actualité" />
           <ion-card-header>
             <ion-card-title>{{ news.title }}</ion-card-title>
-            <ion-card-subtitle>{{ news.date }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ formatDate(news.createdAt) }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            {{ news.summary }}
+            {{ news.description }}
           </ion-card-content>
         </ion-card>
       </ion-list>
@@ -26,14 +26,38 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import {
-  IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent
-} from '@ionic/vue';
+import { ref, onMounted } from 'vue';
+import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonList } from '@ionic/vue';
+import axios from '@/axios';
 
-const newsList = ref([
-  { id: 1, title: 'Actualité 1', summary: 'Résumé de l\'actualité 1', image: 'https://ionicframework.com/docs/img/demos/card-media.png', date: '2023-01-01' },
-  { id: 2, title: 'Actualité 2', summary: 'Résumé de l\'actualité 2', image: 'https://ionicframework.com/docs/img/demos/card-media.png', date: '2023-02-01' },
-  { id: 3, title: 'Actualité 3', summary: 'Résumé de l\'actualité 3', image: 'https://ionicframework.com/docs/img/demos/card-media.png', date: '2023-03-01' },
-]);
+const newsList = ref([]);
+
+const fetchNews = async () => {
+  try {
+    const response = await axios.get('/actualites');
+    console.log('Réponse de l\'API:', response.data); // debug du contenu reçu
+    newsList.value = response.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des actualités:', error);
+  }
+};
+
+
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
+onMounted(fetchNews);
 </script>
+
+<style scoped>
+.ion-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.ion-card-subtitle {
+  color: var(--ion-color-medium);
+}
+</style>

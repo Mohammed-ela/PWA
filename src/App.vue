@@ -8,40 +8,42 @@
           </ion-toolbar>
         </ion-header>
         <ion-content>
-
           <ion-list>
             <ion-list-header>Informations</ion-list-header>
             <ion-menu-toggle auto-hide="false">
               <ion-item router-link="/actus" detail="false">
-                <ion-icon slot="start" :ios="newspaperOutline" :md="newspaperSharp"></ion-icon>
+                <ion-icon slot="start" name="newspaper-outline"></ion-icon>
                 <ion-label>Actualités</ion-label>
               </ion-item>
               <ion-item router-link="/offers" detail="false">
-                <ion-icon slot="start" :ios="pricetagOutline" :md="pricetagSharp"></ion-icon>
+                <ion-icon slot="start" name="pricetag-outline"></ion-icon>
                 <ion-label>Offres</ion-label>
               </ion-item>
               <ion-item router-link="/contact" detail="false">
-                <ion-icon slot="start" :ios="mailOutline" :md="mailSharp"></ion-icon>
+                <ion-icon slot="start" name="mail-outline"></ion-icon>
                 <ion-label>Contact</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
 
-          
           <ion-list>
             <ion-list-header>Mon Compte</ion-list-header>
             <ion-menu-toggle auto-hide="false">
-              <ion-item router-link="/login" detail="false">
-                <ion-icon slot="start" :ios="logInOutline" :md="logInSharp"></ion-icon>
+              <ion-item router-link="/login" detail="false" v-if="!isAuthenticated">
+                <ion-icon slot="start" name="log-in-outline"></ion-icon>
                 <ion-label>Connexion</ion-label>
               </ion-item>
-              <ion-item router-link="/register" detail="false">
-                <ion-icon slot="start" :ios="personAddOutline" :md="personAddSharp"></ion-icon>
+              <ion-item router-link="/register" detail="false" v-if="!isAuthenticated">
+                <ion-icon slot="start" name="person-add-outline"></ion-icon>
                 <ion-label>Inscription</ion-label>
               </ion-item>
-              <ion-item router-link="/account" detail="false">
-                <ion-icon slot="start" :ios="personOutline" :md="personSharp"></ion-icon>
+              <ion-item router-link="/account" detail="false" v-if="isAuthenticated">
+                <ion-icon slot="start" name="person-outline"></ion-icon>
                 <ion-label>Mon Profil</ion-label>
+              </ion-item>
+              <ion-item detail="false" @click="logout" v-if="isAuthenticated">
+                <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                <ion-label>Déconnexion</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
@@ -50,15 +52,15 @@
             <ion-list-header>Mentions Légales</ion-list-header>
             <ion-menu-toggle auto-hide="false">
               <ion-item router-link="/legal-notice" detail="false">
-                <ion-icon slot="start" :ios="informationCircleOutline" :md="informationCircleSharp"></ion-icon>
+                <ion-icon slot="start" name="information-circle-outline"></ion-icon>
                 <ion-label>Mentions légales</ion-label>
               </ion-item>
               <ion-item router-link="/terms" detail="false">
-                <ion-icon slot="start" :ios="documentTextOutline" :md="documentTextSharp"></ion-icon>
+                <ion-icon slot="start" name="document-text-outline"></ion-icon>
                 <ion-label>CGU/CGV</ion-label>
               </ion-item>
               <ion-item router-link="/privacy" detail="false">
-                <ion-icon slot="start" :ios="shieldOutline" :md="shieldSharp"></ion-icon>
+                <ion-icon slot="start" name="shield-outline"></ion-icon>
                 <ion-label>Politique de confidentialité</ion-label>
               </ion-item>
             </ion-menu-toggle>
@@ -88,27 +90,18 @@ import {
   IonToolbar
 } from '@ionic/vue';
 import { ref } from 'vue';
-import {
-  logInOutline,
-  logInSharp,
-  personAddOutline,
-  personAddSharp,
-  personOutline,
-  personSharp,
-  newspaperOutline,
-  newspaperSharp,
-  pricetagOutline,
-  pricetagSharp,
-  mailOutline,
-  mailSharp,
-  informationCircleOutline,
-  informationCircleSharp,
-  documentTextOutline,
-  documentTextSharp,
-  shieldOutline,
-  shieldSharp
-} from 'ionicons/icons';
+import { storeToRefs } from 'pinia';
+import { useAuthStore } from '@/store/store';
 
 const selectedIndex = ref(0);
+const authStore = useAuthStore();
+const { isAuthenticated } = storeToRefs(authStore);
+
+const logout = () => {
+  authStore.logout();
+};
 </script>
 
+<style scoped>
+
+</style>
