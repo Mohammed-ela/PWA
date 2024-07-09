@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { useAuthStore } from '@/store/store'; // Assurez-vous que le chemin est correct
+import { useAuthStore } from '@/store/store';
 
 const routes = [
   { path: '', redirect: '/home' },
   { path: '/home', component: () => import('../views/HomePage.vue') },
   { path: '/actus', component: () => import('../views/NewsPage.vue') },
   { path: '/actus/:id', component: () => import('../views/SingleNewsPage.vue') },
-  { path: '/register', component: () => import('../views/RegisterPage.vue') },
-  { path: '/login', component: () => import('../views/LoginPage.vue') },
+  { path: '/register', component: () => import('../views/RegisterPage.vue'), meta: { requiresGuest: true } },
+  { path: '/login', component: () => import('../views/LoginPage.vue'), meta: { requiresGuest: true } },
   { path: '/account', component: () => import('../views/AccountPage.vue'), meta: { requiresAuth: true } },
   { path: '/offers', component: () => import('../views/OffersPage.vue') },
   { path: '/offers/:id', component: () => import('../views/SingleOfferPage.vue'), meta: { requiresAuth: true } },
@@ -18,6 +18,8 @@ const routes = [
   { path: '/legal-notice', component: () => import('../views/LegalNoticePage.vue') },
   { path: '/terms', component: () => import('../views/TermsPage.vue') },
   { path: '/privacy', component: () => import('../views/PrivacyPage.vue') },
+  { path: '/forgot-password', component: () => import('../views/ForgotPasswordPage.vue') },
+  { path: '/new-password/:slug', component: () => import('../views/NewPasswordPage.vue') }
 ];
 
 const router = createRouter({
@@ -25,14 +27,19 @@ const router = createRouter({
   routes
 });
 
-//middleware connexion
+// Middleware de connexion
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
+
+  // Vérifie les routes nécessitant une authentification
   if (to.matched.some(record => record.meta.requiresAuth) && !authStore.token) {
-    alert('Vous devez être connecté pour accéder à cette page.');
-    // redirige vers login
     next('/login');
-  } else {
+  } 
+  // Vérifie les routes réservées aux utilisateurs déconnectés
+  else if (to.matched.some(record => record.meta.requiresGuest) && authStore.token) {
+    next('/home');
+  } 
+  else {
     next();
   }
 });

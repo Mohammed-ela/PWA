@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import apiClient from '@/axios';
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null);
-  const token = ref(localStorage.getItem('token') || ''); 
+  const token = ref(localStorage.getItem('token') || '');
   const subscriptions = ref([]);
+
+  const isAuthenticated = computed(() => !!token.value);
 
   const setUser = (userData) => {
     user.value = userData;
-    localStorage.setItem('user', JSON.stringify(userData)); 
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const setToken = (tokenData) => {
     token.value = tokenData;
-    localStorage.setItem('token', tokenData); 
+    localStorage.setItem('token', tokenData);
   };
 
   const setSubscriptions = (subscriptionData) => {
@@ -33,14 +35,15 @@ export const useAuthStore = defineStore('auth', () => {
       console.error('Erreur lors de la récupération des abonnements:', error.response.data);
     }
   };
-
   const logout = () => {
     user.value = null;
     token.value = '';
     subscriptions.value = [];
-    localStorage.removeItem('user'); 
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    router.push('/login'); 
   };
+  
 
   // Initialisation
   if (localStorage.getItem('user')) {
@@ -51,6 +54,7 @@ export const useAuthStore = defineStore('auth', () => {
     user,
     token,
     subscriptions,
+    isAuthenticated,
     setUser,
     setToken,
     setSubscriptions,
