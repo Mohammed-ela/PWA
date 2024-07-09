@@ -2,32 +2,44 @@
 <html lang="fr-FR">
   <head>
     <meta charset="utf-8" />
-    <title>Formation Dev</title>
+    <title>Momo Dev</title>
 
     <base href="/" />
 
     <meta name="color-scheme" content="light dark" />
+
     <meta
       name="viewport"
       content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-
+    
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 
-    <!-- add to homescreen for ios -->
+    <!-- For iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Ionic App" />
+    <meta name="apple-mobile-web-app-title" content="Momo Dev" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <!-- <script src="https://js.stripe.com/v3/"></script> -->
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Application PWA pour apprendre le développement." />
+    <meta name="keywords" content="Développement, Formation, Web" />
+
+    <!-- PWA manifest and service worker -->
+    <!-- <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js');
+      }
+    </script> -->
+
+    <!-- Security headers -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:5000; img-src 'self' https://ionicframework.com;"> -->
 
   </head>
-
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
-
 </html>
-
