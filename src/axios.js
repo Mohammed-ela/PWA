@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuthStore } from '@/store/store';
 import router from '@/router';
 const apiClient = axios.create({
-  baseURL: process.env.API_URL, 
+  baseURL: "https://marked-hammerhead-aerosteon.glitch.me",
   withCredentials: false,
   headers: {
     Accept: 'application/json',
