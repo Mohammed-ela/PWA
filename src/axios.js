@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAuthStore } from '@/store/store';
 import router from '@/router';
 const apiClient = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.API_URL, 
   withCredentials: false,
   headers: {
     Accept: 'application/json',
