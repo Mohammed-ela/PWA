@@ -12,7 +12,7 @@
       <!-- si je suis connecté -->
       <template v-if="isAuthenticated">
         <div class="center-content">
-          <img src="../../public/logo4.png" alt="Logo" class="center-image"/>
+          <img src="https://pwa-mohammed.netlify.app/logo4.png" alt="Logo" class="center-image"/>
         </div>
         <ion-card>
           <ion-card-header>
@@ -34,7 +34,7 @@
       <!-- si je suis PAS connecté -->
       <template v-else>
         <div class="center-content">
-          <img src="../../public/logo4.png" alt="Logo" class="center-image"/>
+          <img src="https://pwa-mohammed.netlify.app/logo4.png" alt="Logo" class="center-image"/>
         </div>
         <ion-card>
           <ion-card-header>
